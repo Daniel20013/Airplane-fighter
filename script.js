@@ -1,7 +1,4 @@
 const plane = document.querySelector(".plane");
-const container = document.querySelector(".container");
-const containerWidth = container.clientWidth;
-const planeWidth = plane.clientWidth;
 let moveDistance = 52;
 document.addEventListener('keydown', function(event) {
     let = currentPosition = parseInt(plane.style.left || "0");
