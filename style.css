@@ -51,3 +51,36 @@
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
     cursor: pointer;
 }
+
+.gameOver {
+    display: none;
+}
+
+#imgGameOver {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    height: 35rem;
+}
+
+#restart {
+    position: absolute;
+    left: 50%;
+    top: 85%;
+    transform: translate(-50%, -15%);
+    font-size: 3rem;
+    border-radius: 5%;
+    background-color: aqua;
+    color: white;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    cursor: pointer;
+}
+
+#score {
+    position: absolute;
+    left: 50%;
+    top: 5%;
+    transform: translate(-50%, -95%);
+    font-size: 3em;
+}
