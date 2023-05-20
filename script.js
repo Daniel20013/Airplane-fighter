@@ -12,16 +12,31 @@ function obstaclesAppear() {
   
     setTimeout(function() {
         clone.classList.add("down");
-        
+
+        setTimeout(function() {
+            checkCollision(clone);
+        }, 4500);
+
         setTimeout(function() {
             clone.remove();
-            checkCollision(clone);
         }, 5000);
     }, 100);
 }
 
-
-  
+function checkCollision(clone) {
+    const rect1 = clone.getBoundingClientRect();
+    const rect2 = plane.getBoundingClientRect();
+    if (
+      rect1.left < rect2.right &&
+      rect1.right > rect2.left &&
+      rect1.top < rect2.bottom &&
+      rect1.bottom > rect2.top
+    ) {
+      alert("impact"); 
+      return true;
+    }
+    return false;
+}
 
 function pad(value) {
     return value.toString().padStart(2, "0");
