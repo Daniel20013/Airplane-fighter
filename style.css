@@ -23,7 +23,7 @@
 .obstacles {
     position: absolute;
     left: 76%;
-    top: -3em;
+    top: 10px;
     display: none;
     transition: top 10s;
 }
