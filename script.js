@@ -1,7 +1,10 @@
 const plane = document.querySelector(".plane");
 let score = document.getElementById("score");
 let seconds = 0, minutes = 0, hours = 0;
+let timerID;
+let obstaclesIntervalID;
 let puncture = 0;
+let gameOver = document.querySelector(".gameOver");
 
 function obstaclesAppear() {
     const containerObstacles = document.querySelector(".containerObstacles");
@@ -40,15 +43,19 @@ function checkCollision(clone) {
         rect1.bottom > rect2.top
     ) {
         score.textContent = "Score: " + puncture;
-        let gameOver = document.querySelector(".gameOver");
         gameOver.style.display = "block";
+        seconds = 0;
+        minutes = 0;
+        hours = 0;
+        clearInterval(timerID);
+        clearInterval(obstaclesIntervalID);
+        plane.style.display = "none";
         return true;
     }
     return false;
 }
 
 function startTimer() {
-    let timerID;
     timerID = setInterval(function() {
         ++seconds;
         ++puncture;
@@ -63,7 +70,7 @@ function startTimer() {
         let time = pad(hours) + ":" + pad(minutes) + ":" + pad(seconds);
         document.getElementById("timer").textContent = time;
     }, 1000);
-    setInterval(obstaclesAppear, 1500);
+    obstaclesIntervalID = setInterval(obstaclesAppear, 1500);
 }
 
 function startGame() {
@@ -92,4 +99,11 @@ function startGame() {
             }
         }
     });
+}
+
+function restartGame() {
+    startTimer();
+    plane.style.display = "block";
+    gameOver.style.display = "none";
+    score = 0;
 }
