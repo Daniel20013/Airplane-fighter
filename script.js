@@ -28,8 +28,6 @@ function obstaclesAppear() {
             clone.remove();
         }, 5000);
     }, 100);
-    
-    
 }
 
 function pad(value) {
