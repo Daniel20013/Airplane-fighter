@@ -60,7 +60,6 @@ function startTimer() {
     timerID = setInterval(function() {
         ++seconds;
         ++puncture;
-        console.log(appearanceTime);
         if (seconds === 60) {
             seconds = 0;
             ++minutes;
