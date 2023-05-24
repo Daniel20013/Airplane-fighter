@@ -5,6 +5,7 @@ let timerID;
 let obstaclesIntervalID;
 let puncture = 0;
 let gameOver = document.querySelector(".gameOver");
+let appearanceTime = 1500;
 
 function obstaclesAppear() {
     const containerObstacles = document.querySelector(".containerObstacles");
@@ -12,7 +13,7 @@ function obstaclesAppear() {
     img.src = "assets/airplane_u2708_icon_256x256.png";
     const clone = img.cloneNode(true);
     clone.classList.add("obstacles");
-    clone.style.left = Math.floor((76 - 1 + 1) * Math.random()) + "%";
+    clone.style.left = Math.floor((90 - 1 + 1) * Math.random()) + "%";
     clone.style.display = "block";
     containerObstacles.appendChild(clone);
   
@@ -27,6 +28,8 @@ function obstaclesAppear() {
             clone.remove();
         }, 5000);
     }, 100);
+    
+    
 }
 
 function pad(value) {
@@ -59,6 +62,7 @@ function startTimer() {
     timerID = setInterval(function() {
         ++seconds;
         ++puncture;
+        console.log(appearanceTime);
         if (seconds === 60) {
             seconds = 0;
             ++minutes;
@@ -67,10 +71,21 @@ function startTimer() {
             minutes = 0;
             ++hours;
         }
+        if (seconds % 10 === 0) {
+            modifyAppearanceTime();
+        }
         let time = pad(hours) + ":" + pad(minutes) + ":" + pad(seconds);
         document.getElementById("timer").textContent = time;
     }, 1000);
-    obstaclesIntervalID = setInterval(obstaclesAppear, 1500);
+    obstaclesIntervalID = setInterval(obstaclesAppear, appearanceTime);
+}
+
+function modifyAppearanceTime() {
+    if (appearanceTime >= 300) {
+        appearanceTime -= 150;
+    }
+    clearInterval(obstaclesIntervalID);
+    obstaclesIntervalID = setInterval(obstaclesAppear, appearanceTime);
 }
 
 function startGame() {
