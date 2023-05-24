@@ -118,7 +118,7 @@ function restartGame() {
     startTimer();
     plane.style.display = "block";
     gameOver.style.display = "none";
-    score = 0;
+    puncture = 0;
     appearanceTime = 1500;
     clearInterval(obstaclesIntervalID);
     obstaclesIntervalID = setInterval(obstaclesAppear, appearanceTime);
