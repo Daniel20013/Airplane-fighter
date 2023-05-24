@@ -13,7 +13,7 @@ function obstaclesAppear() {
     img.src = "assets/airplane_u2708_icon_256x256.png";
     const clone = img.cloneNode(true);
     clone.classList.add("obstacles");
-    clone.style.left = Math.floor((90 - 1 + 1) * Math.random()) + "%";
+    clone.style.left = Math.floor((86 - 1 + 1) * Math.random()) + "%";
     clone.style.display = "block";
     containerObstacles.appendChild(clone);
   
@@ -119,4 +119,7 @@ function restartGame() {
     plane.style.display = "block";
     gameOver.style.display = "none";
     score = 0;
+    appearanceTime = 1500;
+    clearInterval(obstaclesIntervalID);
+    obstaclesIntervalID = setInterval(obstaclesAppear, appearanceTime);
 }
