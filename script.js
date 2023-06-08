@@ -5,6 +5,7 @@ let timerID;
 let obstaclesIntervalID;
 let puncture = 0;
 let gameOver = document.querySelector(".gameOver");
+let moveDistance = 52;
 let appearanceTime = 1500;
 
 function obstaclesAppear() {
@@ -16,14 +17,11 @@ function obstaclesAppear() {
     clone.style.left = Math.floor((86 - 1 + 1) * Math.random()) + "%";
     clone.style.display = "block";
     containerObstacles.appendChild(clone);
-  
     setTimeout(function() {
         clone.classList.add("down");
-
-        setTimeout(function() {
+        setInterval(function() {
             checkCollision(clone);
-        }, 4500);
-
+        }, 100);
         setTimeout(function() {
             clone.remove();
         }, 5000);
@@ -92,17 +90,16 @@ function startGame() {
     let start = document.getElementById("start");
     start.style.display = "none";
     plane.style.display = "block";
-    let moveDistance = 52;
     document.addEventListener('keydown', function(event) {
         let = currentPosition = parseInt(plane.style.left || "0");
-        if (event.key === "ArrowRight") {
+        if (event.key === "d" || event.key === "D") {
             moveDistance += 5;
             if (moveDistance < 95) {
                 plane.style.left = moveDistance + "%";
             } else {
                 moveDistance -= 5;
             }
-        } else if (event.key === "ArrowLeft") {
+        } else if (event.key === "a" || event.key === "A") {
             moveDistance -= 5;
             if (moveDistance >= 0) {
                 plane.style.left = moveDistance + "%";
@@ -121,4 +118,6 @@ function restartGame() {
     appearanceTime = 1500;
     clearInterval(obstaclesIntervalID);
     obstaclesIntervalID = setInterval(obstaclesAppear, appearanceTime);
+    moveDistance = 52;
+    plane.style.left = moveDistance + "%";
 }
