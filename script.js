@@ -8,7 +8,7 @@ let gameOver = document.querySelector(".gameOver");
 let appearanceTime = 1500;
 let moveDistance = 52;
 let clones = [];
-const hundred = 100;
+const oneHundred = 100;
 const two = 2;
 
 function collisionObjects(projectile) {
@@ -65,11 +65,11 @@ function objection() {
         clone.classList.add("down");
         setInterval (function() {
             checkCollision(clone);
-        }, hundred);
+        }, oneHundred);
         setTimeout (function() {
             clone.remove();
         }, timeDeletion);
-    }, hundred);
+    }, oneHundred);
 }
 
 function release() {
@@ -88,11 +88,11 @@ function release() {
         projectile.classList.add("up");
         setInterval (function() {
             collisionObjects(projectile);
-        }, hundred);
+        }, oneHundred);
         setTimeout(function() {
             projectile.remove();
         }, projectileErasure);
-    }, hundred);
+    }, oneHundred);
 }
 
 function pad(value) {
