@@ -8,7 +8,7 @@ let gameOver = document.querySelector(".gameOver");
 let appearanceTime = 1500;
 let moveDistance = 52;
 let clones = [];
-const oneHundred = 100, two = 2;
+const oneHundred = 100, two = 2, ten = 10;
 
 function collisionObjects(projectile) {
     const rect1 = projectile.getBoundingClientRect();
@@ -52,7 +52,7 @@ function objection() {
     const containerObstacles = document.querySelector(".containerObstacles");
     let clone = document.createElement("img");
     clone.src = "assets/output-onlinepngtools (1).png";
-    clone.style.height = "10rem"
+    clone.style.height = ten + "rem"
     clone.classList.add("obstacles");
     const eightySix = 86; 
     clone.style.left = Math.floor((eightySix - 1 + 1) * Math.random()) + "%";
@@ -108,7 +108,7 @@ function modifyAppearanceTime() {
 }
 
 function startTimer() {
-    const sixty = 60, ten = 10, oneThousand = 1000;
+    const sixty = 60, oneThousand = 1000;
     timerID = setInterval(function() {
         ++seconds;
         if (seconds === sixty) {
