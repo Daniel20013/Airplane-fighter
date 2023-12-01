@@ -8,8 +8,7 @@ let gameOver = document.querySelector(".gameOver");
 let appearanceTime = 1500;
 let moveDistance = 52;
 let clones = [];
-const oneHundred = 100;
-const two = 2;
+const oneHundred = 100, two = 2;
 
 function collisionObjects(projectile) {
     const rect1 = projectile.getBoundingClientRect();
