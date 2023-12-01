@@ -8,6 +8,8 @@ let gameOver = document.querySelector(".gameOver");
 let appearanceTime = 1500;
 let moveDistance = 52;
 let clones = [];
+const hundred = 100;
+const two = 2;
 
 function collisionObjects(projectile) {
     const rect1 = projectile.getBoundingClientRect();
@@ -53,19 +55,21 @@ function objection() {
     clone.src = "assets/output-onlinepngtools (1).png";
     clone.style.height = "10rem"
     clone.classList.add("obstacles");
-    clone.style.left = Math.floor((86 - 1 + 1) * Math.random()) + "%";
+    const eightySix = 86; 
+    clone.style.left = Math.floor((eightySix - 1 + 1) * Math.random()) + "%";
     clone.style.display = "block";
     containerObstacles.appendChild(clone);
     clones.push(clone);
+    const timeDeletion = 5000;
     setTimeout (function() {
         clone.classList.add("down");
         setInterval (function() {
             checkCollision(clone);
-        }, 100);
+        }, hundred);
         setTimeout (function() {
             clone.remove();
-        }, 5000);
-    }, 100);
+        }, timeDeletion);
+    }, hundred);
 }
 
 function release() {
@@ -73,51 +77,55 @@ function release() {
     let projectile = document.createElement("img");
     projectile.src = "assets/Projectile.png";
     projectile.classList.add("projectile");
-    projectile.style.left = (moveDistance + 2) + "%";
-    projectile.style.top = 89 + "%";
-    projectile.style.height = "2rem";
+    projectile.style.left = (moveDistance + two) + "%";
+    const eightyNine = 89;
+    projectile.style.top = eightyNine + "%";
+    projectile.style.height = two + "rem";
     projectile.style.display = "block";
     containerProjectile.appendChild(projectile);
+    const projectileErasure = 2800;
     setTimeout(function() {
         projectile.classList.add("up");
         setInterval (function() {
             collisionObjects(projectile);
-        }, 100);
+        }, hundred);
         setTimeout(function() {
             projectile.remove();
-        }, 2800);
-    }, 100);
+        }, projectileErasure);
+    }, hundred);
 }
 
 function pad(value) {
-    return value.toString().padStart(2, "0");
+    return value.toString().padStart(two, "0");
 }
 
 function modifyAppearanceTime() {
-    if (appearanceTime >= 300) {
-        appearanceTime -= 150;
+    const timeLimit = 300, decreaseTime = 150;
+    if (appearanceTime >= timeLimit) {
+        appearanceTime -= decreaseTime;
     }
     clearInterval(obstaclesIntervalID);
     obstaclesIntervalID = setInterval(objection, appearanceTime);
 }
 
 function startTimer() {
+    const sixty = 60, ten = 10, oneThousand = 1000;
     timerID = setInterval(function() {
         ++seconds;
-        if (seconds === 60) {
+        if (seconds === sixty) {
             seconds = 0;
             ++minutes;
         }
-        if (minutes === 60) {
+        if (minutes === sixty) {
             minutes = 0;
             ++hours;
         }
-        if (seconds % 10 === 0) {
+        if (seconds % ten === 0) {
             modifyAppearanceTime();
         }
         let time = pad(hours) + ":" + pad(minutes) + ":" + pad(seconds);
         document.getElementById("timer").textContent = time;
-    }, 1000);
+    }, oneThousand);
     obstaclesIntervalID = setInterval (objection, appearanceTime);
 }
 
@@ -127,20 +135,21 @@ function startGame() {
     let start = document.getElementById("start");
     start.style.display = "none";
     plane.style.display = "block";
+    const five = 5, ninetyFive = 95;
     document.addEventListener('keydown', function(event) {
         if (event.key === "d" || event.key === "D" || event.key === "ArrowRight") {
-            moveDistance += 5;
-            if (moveDistance < 95) {
+            moveDistance += five;
+            if (moveDistance < ninetyFive) {
                 plane.style.left = moveDistance + "%";
             } else {
-                moveDistance -= 5;
+                moveDistance -= five;
             }
         } else if (event.key === "a" || event.key === "A" || event.key === "ArrowLeft") {
-            moveDistance -= 5;
+            moveDistance -= five;
             if (moveDistance >= 0) {
                 plane.style.left = moveDistance + "%";
             } else {
-                moveDistance += 5;
+                moveDistance += five;
             }
         }
         if (event.key === " " || event.key === "ArrowUp") {
