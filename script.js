@@ -46,7 +46,7 @@ function checkCollision(clone) {
     }
 }
 
-function objection() {
+function objects() {
     const containerObstacles = document.querySelector(".containerObstacles");
     let clone = document.createElement("img");
     clone.src = "assets/output-onlinepngtools (1).png";
@@ -106,7 +106,7 @@ function modifyAppearanceTime() {
         appearanceTime -= decreaseTime;
     }
     clearInterval(obstaclesIntervalID);
-    obstaclesIntervalID = setInterval(objection, appearanceTime);
+    obstaclesIntervalID = setInterval(objects, appearanceTime);
 }
 
 function startTimer() {
@@ -127,7 +127,7 @@ function startTimer() {
         let time = pad(hours) + ":" + pad(minutes) + ":" + pad(seconds);
         document.getElementById("timer").textContent = time;
     }, recallToTheSecond);
-    obstaclesIntervalID = setInterval (objection, appearanceTime);
+    obstaclesIntervalID = setInterval (objects, appearanceTime);
 }
 
 function startGame() {
@@ -167,7 +167,7 @@ function restartGame() {
     puncture = 0;
     appearanceTime = 1500;
     clearInterval(obstaclesIntervalID);
-    obstaclesIntervalID = setInterval(objection, appearanceTime);
+    obstaclesIntervalID = setInterval(objects, appearanceTime);
     moveDistance = 52;
     plane.style.left = moveDistance + "%";
 }
