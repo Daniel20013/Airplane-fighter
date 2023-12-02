@@ -50,7 +50,8 @@ function objection() {
     const containerObstacles = document.querySelector(".containerObstacles");
     let clone = document.createElement("img");
     clone.src = "assets/output-onlinepngtools (1).png";
-    clone.style.height = "10rem"
+    const heightOfObstacles = 10;
+    clone.style.height = heightOfObstacles + "rem";
     clone.classList.add("obstacles");
     const maxLimit = 86; 
     clone.style.left = Math.floor((maxLimit - 1 + 1) * Math.random()) + "%";
